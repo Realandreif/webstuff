@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-cursor-teleport@1.4.0/dist/aframe-cursor-teleport-component.min.js"></script>
     <script src="https://quadjr.github.io/aframe-gaussian-splatting/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
-
+	<script src="https://morandd.github.io/aframe-multitouch-look-controls/multitouch-look-controls.js"></script>
   </head>
   <body>
     <script>
@@ -31,7 +31,7 @@
 
       <!-- player -->
       <a-entity id="cameraRig" position="0 0 0" cursor-teleport="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: #vr-collider; ignoreEntities: .clickable">
-        <a-entity id="head" position="0 1.52 0" camera look-controls wasd-controls="acceleration:100"></a-entity>
+        <a-entity id="head" position="0 1.52 0" camera multitouch-look-controls wasd-controls="acceleration:100"></a-entity>
         <a-entity
           laser-controls="hand: left"
           raycaster="objects: .clickable; far: 100"
