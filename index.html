@@ -25,13 +25,9 @@
 
     <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable" renderer="colorManagement: true;">
 
-      <a-assets>
-        <a-asset-item id="environment" src="models/environment.glb"></a-asset-item>
-      </a-assets>
-
       <!-- player -->
       <a-entity id="cameraRig" position="0 0 0" cursor-teleport="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: #vr-collider; ignoreEntities: .clickable">
-        <a-entity id="head" position="0 1.52 0" camera look-controls-enabled="false" touchEnabled="true" wasd-controls="acceleration:100"></a-entity>
+        <a-entity id="head" position="0 1.52 0" camera look-controls touchEnabled="true" wasd-controls="acceleration:100"></a-entity>
         <a-entity
           laser-controls="hand: left"
           raycaster="objects: .clickable; far: 100"
@@ -62,9 +58,6 @@
       <a-entity class="clickable" color-change geometry="primitive: octahedron" scale=".2 .2 .2" position="-.8 1 -1.5" material="color: #3f51b5"></a-entity>
       <a-entity class="clickable" color-change geometry="primitive: octahedron" scale=".2 .2 .2" position="0 1.2 -1.5" material="color: #3f51b5"></a-entity>
       <a-entity class="clickable" color-change geometry="primitive: octahedron" scale=".2 .2 .2" position=".8 1 -1.5" material="color: #3f51b5"></a-entity>
-
-      <!-- environment -->
-      <a-sky color="#e1f5fe"></a-sky>
 
     </a-scene>
 
