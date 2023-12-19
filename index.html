@@ -8,34 +8,22 @@
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-cursor-teleport@1.4.0/dist/aframe-cursor-teleport-component.min.js"></script>
     <script src="https://quadjr.github.io/aframe-gaussian-splatting/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
+	 <script>
+	  AFRAME.registerComponent("foo", {
+		init: function() {
+		  const text = document.querySelector("a-text")
+		  // listen for clicks
+		  this.el.addEventListener("click", e => {
+			// log the points
+			//console.log(e.detail.intersection.point)
+			let point = e.detail.intersection.point
+			let pointString = point.x.toFixed(2) + ", " + point.y.toFixed(2) + ", " + point.z.toFixed(2);
+			text.setAttribute("value", "Click at: " + pointString)
+		  })
+		}
+	  })
+	</script>
   </head>
-  <script>
-  AFRAME.registerComponent("foo", {
-    init: function() {
-      const text = document.querySelector("a-text")
-      // listen for clicks
-      this.el.addEventListener("click", e => {
-        // log the points
-        //console.log(e.detail.intersection.point)
-        let point = e.detail.intersection.point
-        let pointString = point.x.toFixed(2) + ", " + point.y.toFixed(2) + ", " + point.z.toFixed(2);
-        text.setAttribute("value", "Click at: " + pointString)
-      })
-    }
-  })
-</script>
-
-<a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable">
-  <a-text position="-1 2 -3" color="black"></a-text>
-  <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-  <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-  <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-  <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-  <a-camera>
-    <a-sphere class="clickable" material="side: back" visible="false" foo></a-sphere>
-  </a-camera>
-  <a-sky color="#ECECEC"></a-sky>
-</a-scene>
   <body>
     <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable" renderer="colorManagement: true;">
 
