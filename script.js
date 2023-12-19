@@ -30,6 +30,10 @@ function pointCloud() {
   document.getElementById("viewport").src = newSrc;
 }
 
+document.getElementById("viewport").contentDocument.addEventListener(("load", function() {
+  document.querySelector("iframe").focus();
+}, false);)
+
 // =============
 // == Globals ==
 // =============
@@ -122,11 +126,17 @@ function handleClearButtonClick(event) {
 function getMosuePositionOnCanvas(event) {
   const clientX = event.clientX || event.touches[0].clientX;
   const clientY = event.clientY || event.touches[0].clientY;
-  const { offsetLeft, offsetTop } = event.target;
+  const {
+    offsetLeft,
+    offsetTop
+  } = event.target;
   const canvasX = clientX - offsetLeft;
   const canvasY = clientY - offsetTop;
 
-  return { x: canvasX, y: canvasY };
+  return {
+    x: canvasX,
+    y: canvasY
+  };
 }
 
 function clearCanvas() {
