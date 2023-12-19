@@ -15,7 +15,7 @@
     <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable" renderer="colorManagement: true;">
       <!-- player -->
       <a-entity id="cameraRig" position="0 0 0" cursor-teleport="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: #vr-collider; ignoreEntities: .clickable">
-        <a-entity id="head" position="0 1.52 0" camera look-controls="reverseMouseDrag: true"></a-entity>
+        <a-entity id="head" position="0 1.52 0" camera look-controls="enabled: false" orbit-controls="target: 0 2 0; minDistance: 2; maxDistance: 180; initialPosition: 0 3 5; rotateSpeed: 0.5"></a-entity>
         <a-entity laser-controls="hand: left" raycaster="objects: .clickable; far: 100" line="color: red; opacity: 0.75" blink-controls="
             collisionEntities: #vr-collider;
             cameraRig: #cameraRig;
@@ -27,7 +27,7 @@
             teleportOrigin: #head;
             curveShootingSpeed: 6"></a-entity>
       </a-entity>
-      <a-entity gaussian_splatting="src: https://realandreif.github.io/webstuff/splats/train.splat; xrPixelRatio: 0.5; pixelRatio: 0.25;" rotation="4.5 0 -2" position="0 1.5 -2" scale="2 2 2"></a-entity>
+      <a-entity gaussian_splatting="src: /webstuff/splats/train.splat; xrPixelRatio: 0.5; pixelRatio: 0.5;" rotation="4.5 0 -2" position="0 1.5 -2" scale="2 2 2"></a-entity>
       <!-- scene model -->
       <a-entity class="collision" gltf-model="#environment"></a-entity>
 
