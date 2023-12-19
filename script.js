@@ -15,14 +15,18 @@ function annotate() {
 
 annotate();
 
+document.getElementById("viewport").focus();
+
 function virtualR() {
   var newSrc = "https://realandreif.github.io/webstuff/xr/index.html";
   document.getElementById("viewport").src = newSrc;
+  document.getElementById("viewport").focus();
 }
 
 function augmentedR() {
   var newSrc = "https://realandreif.github.io/webstuff/xr/index.html";
   document.getElementById("viewport").src = newSrc;
+  document.getElementById("viewport").focus();
 }
 
 function pointCloud() {
@@ -30,9 +34,7 @@ function pointCloud() {
   document.getElementById("viewport").src = newSrc;
 }
 
-document.getElementById("viewport").contentDocument.addEventListener(("load", function() {
-  document.querySelector("viewport").focus();
-}, false);)
+
 
 // =============
 // == Globals ==
