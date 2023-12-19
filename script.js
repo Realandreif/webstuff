@@ -31,7 +31,7 @@ function pointCloud() {
 }
 
 document.getElementById("viewport").contentDocument.addEventListener(("load", function() {
-  document.querySelector("iframe").focus();
+  document.querySelector("viewport").focus();
 }, false);)
 
 // =============
