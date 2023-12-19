@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-cursor-teleport@1.4.0/dist/aframe-cursor-teleport-component.min.js"></script>
     <script src="https://quadjr.github.io/aframe-gaussian-splatting/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
-	 <script>
+	<script>
 	  AFRAME.registerComponent("foo", {
 		init: function() {
 		  const text = document.querySelector("a-text")
@@ -49,7 +49,7 @@
             curveShootingSpeed: 6"></a-entity>
       </a-entity>
 	  <a-text position="0 0 0" color="black"></a-text>
-	  <a-entity class="clickable" gaussian_splatting="src: https://huggingface.co/cakewalk/splat-data/resolve/main/train.splat;" rotation="4.5 0 -2" position="0 1.5 -2" scale="2 2 2" pixelRatio="0.5" foo></a-entity>
+	  <a-entity gaussian_splatting="src: https://huggingface.co/cakewalk/splat-data/resolve/main/train.splat;" rotation="4.5 0 -2" position="0 1.5 -2" scale="2 2 2" pixelRatio="0.5"></a-entity>
       <!-- scene model -->
       <a-entity class="collision" gltf-model="#environment"></a-entity>
 
@@ -60,7 +60,9 @@
       <a-entity class="clickable" color-change geometry="primitive: octahedron" scale=".2 .2 .2" position="-.8 1 -1.5" material="color: #3f51b5"></a-entity>
       <a-entity class="clickable" color-change geometry="primitive: octahedron" scale=".2 .2 .2" position="0 1.2 -1.5" material="color: #3f51b5"></a-entity>
       <a-entity class="clickable" color-change geometry="primitive: octahedron" scale=".2 .2 .2" position=".8 1 -1.5" material="color: #3f51b5"></a-entity>
-
+	  <a-camera>
+		<a-sphere class="clickable" material="side: back" visible="false" foo></a-sphere>
+	  </a-camera>
     </a-scene>
 
     <!-- GitHub Corner. -->
