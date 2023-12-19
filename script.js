@@ -32,6 +32,7 @@ function augmentedR() {
 function pointCloud() {
   var newSrc = "https://realandreif.github.io/webstuff/webviewer/index.html";
   document.getElementById("viewport").src = newSrc;
+  document.getElementById("viewport").focus();
 }
 
 
