@@ -10,6 +10,7 @@ function annotate() {
     y.style.display = "block";
   } else {
     y.style.display = "none";
+	document.getElementById("viewport").focus();
   }
 }
 
