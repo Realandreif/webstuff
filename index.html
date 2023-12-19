@@ -1,60 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Dissemination</title>
+  <link rel="stylesheet" href="./style.css">
 
-  <head>
-    <meta charset="utf-8">
-    <title>Gaussian Splat Experience</title>
-    <meta name="description" content="Basic example for Cursor Teleport component.">
-    </meta>
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-cursor-teleport@1.4.0/dist/aframe-cursor-teleport-component.min.js"></script>
-    <script src="https://quadjr.github.io/aframe-gaussian-splatting/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
-    <script>
-      AFRAME.registerComponent("foo", {
-        init: function() {
-          const text = document.querySelector("a-text")
-          // listen for clicks
-          this.el.addEventListener("click", e => {
-            // log the points
-            //console.log(e.detail.intersection.point)
-            let point = e.detail.intersection.point
-            let pointString = point.x.toFixed(2) + ", " + point.y.toFixed(2) + ", " + point.z.toFixed(2);
-            text.setAttribute("value", "Click at: " + pointString)
-          })
-        }
-      })
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<head>
+  <title>Change src value of iframe dynamically</title>
+  <script type="text/javascript">
+  </script>
+  <style type="text/css">
+    select {
+      clear: both;
+    }
+  </style>
+</head>
+<div id="frame">
+  <iframe class="frame" src=https://realandreif.github.io/webstuff/webviewer/index.html id="viewport"></iframe>
+</div>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<canvas id="drawing-area" class="drawing-area" height="900" width="1920"></canvas>
+<nav class="nav">
+  <a href="#" class="nav__link nav__link--active" onclick="virtualR();">
+    <i class="material-icons nav__icon">vrpano</i>
+    <span class="nav__text">Virtual Reality</span>
+  </a>
+  <a href="#" class="nav__link" onclick="augmentedR();">
+    <i class="material-icons nav__icon">view_in_ar</i>
+    <span class="nav__text">Augmented Reality</span>
+  </a>
+  <a href="#" class="nav__link" onclick="pointCloud();">
+    <i class="material-icons nav__icon">visibility</i>
+    <span class="nav__text">Point Cloud</span>
+  </a>
+  <a href="#" class="nav__link" onclick="annotate();">
+    <i class="material-icons nav__icon">edit</i>
+    <span class="nav__text">Annotate</span>
+  </a>
+</nav>
+<annotate class="annotate" id="paint-tools">
+  <a href="#" class="annotate__link">
+    <i class="material-icons annotate__icon" style="color:blue" onclick="strokeStyle = 'blue';">circle</i>
+    <i class="material-icons annotate__icon" style="color:red" onclick="strokeStyle = 'red';">circle</i>
+    <i class="material-icons annotate__icon" style="color:green" onclick="strokeStyle = 'green';">circle</i>
+    <i class="material-icons annotate__icon" style="color:yellow" onclick="strokeStyle = 'yellow';">circle</i>
+    <i class="material-icons annotate__icon" style="color:orange" onclick="strokeStyle = 'orange';">circle</i>
+    <i class="material-icons annotate__icon" style="color:gray" onclick="strokeStyle = 'gray';">circle</i>
+    <i class="material-icons annotate__icon" style="color:black" onclick="strokeStyle = 'black';">circle</i>
+    <i class="material-icons annotate__icon" style="color:pink" onclick="strokeStyle = 'pink';">circle</i>
+    <i class="material-icons annotate__icon" style="color:black" onclick="clearCanvas()">close</i>
+  </a>
+</annotate>
+<!-- partial -->
+  <script  src="./script.js"></script>
 
-    </script>
-  </head>
-
-  <body>
-    <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable" renderer="colorManagement: true;">
-      <!-- player -->
-      <a-entity id="cameraRig" position="0 0 0" cursor-teleport="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: #vr-collider; ignoreEntities: .clickable">
-        <a-entity id="head" position="0 1.52 0" camera look-controls wasd-controls="acceleration:100"></a-entity>
-        <a-entity laser-controls="hand: left" raycaster="objects: .clickable; far: 100" line="color: red; opacity: 0.75" blink-controls="
-            collisionEntities: #vr-collider;
-            cameraRig: #cameraRig;
-            teleportOrigin: #head;
-            curveShootingSpeed: 6"></a-entity>
-        <a-entity laser-controls="hand: right" raycaster="objects: .clickable" line="color: red; opacity: 0.75" blink-controls="
-            collisionEntities: #vr-collider;
-            cameraRig: #cameraRig;
-            teleportOrigin: #head;
-            curveShootingSpeed: 6"></a-entity>
-      </a-entity>
-      <a-text position="0 1.5 0" color="black"></a-text>
-      <a-entity gaussian_splatting="src: https://huggingface.co/cakewalk/splat-data/resolve/main/train.splat;" rotation="4.5 0 -2" position="0 1.5 -2" scale="2 2 2" pixelRatio></a-entity>
-      <!-- scene model -->
-      <a-entity class="collision" gltf-model="#environment"></a-entity>
-
-      <!-- collision for vr teleport controls -->
-      <a-entity id="vr-collider" obj-model="obj: url(models/vr-collider.obj)" visible="false"></a-entity>
-      <a-camera>
-        <a-sphere class="clickable" material="side: back" visible="false" foo></a-sphere>
-      </a-camera>
-    </a-scene>
-  </body>
-
+</body>
 </html>

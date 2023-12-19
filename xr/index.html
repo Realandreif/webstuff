@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Gaussian Splat Experience</title>
+    <meta name="description" content="Basic example for Cursor Teleport component.">
+    </meta>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-cursor-teleport@1.4.0/dist/aframe-cursor-teleport-component.min.js"></script>
+    <script src="https://quadjr.github.io/aframe-gaussian-splatting/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
+    <script>
+      AFRAME.registerComponent("foo", {
+        init: function() {
+          const text = document.querySelector("a-text")
+          // listen for clicks
+          this.el.addEventListener("click", e => {
+            // log the points
+            //console.log(e.detail.intersection.point)
+            let point = e.detail.intersection.point
+            let pointString = point.x.toFixed(2) + ", " + point.y.toFixed(2) + ", " + point.z.toFixed(2);
+            text.setAttribute("value", "Click at: " + pointString)
+          })
+        }
+      })
+
+    </script>
+  </head>
+
+  <body>
+    <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable" renderer="colorManagement: true;">
+      <!-- player -->
+      <a-entity id="cameraRig" position="0 0 0" cursor-teleport="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: #vr-collider; ignoreEntities: .clickable">
+        <a-entity id="head" position="0 1.52 0" camera look-controls wasd-controls="acceleration:100"></a-entity>
+        <a-entity laser-controls="hand: left" raycaster="objects: .clickable; far: 100" line="color: red; opacity: 0.75" blink-controls="
+            collisionEntities: #vr-collider;
+            cameraRig: #cameraRig;
+            teleportOrigin: #head;
+            curveShootingSpeed: 6"></a-entity>
+        <a-entity laser-controls="hand: right" raycaster="objects: .clickable" line="color: red; opacity: 0.75" blink-controls="
+            collisionEntities: #vr-collider;
+            cameraRig: #cameraRig;
+            teleportOrigin: #head;
+            curveShootingSpeed: 6"></a-entity>
+      </a-entity>
+      <a-text position="0 1.5 0" color="black"></a-text>
+      <a-entity gaussian_splatting="src: https://huggingface.co/cakewalk/splat-data/resolve/main/train.splat;" rotation="4.5 0 -2" position="0 1.5 -2" scale="2 2 2" pixelRatio></a-entity>
+      <!-- scene model -->
+      <a-entity class="collision" gltf-model="#environment"></a-entity>
+
+      <!-- collision for vr teleport controls -->
+      <a-entity id="vr-collider" obj-model="obj: url(models/vr-collider.obj)" visible="false"></a-entity>
+      <a-camera>
+        <a-sphere class="clickable" material="side: back" visible="false" foo></a-sphere>
+      </a-camera>
+    </a-scene>
+  </body>
+
+</html>
