@@ -4,8 +4,6 @@
   <head>
     <meta charset="utf-8">
     <title>PUT NAME HERE</title>
-    <meta name="description" content="Basic example for Cursor Teleport component.">
-    </meta>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-cursor-teleport@1.4.0/dist/aframe-cursor-teleport-component.min.js"></script>
     <script src="https://quadjr.github.io/aframe-gaussian-splatting/index.js"></script>
@@ -13,35 +11,45 @@
     <script src="https://unpkg.com/aframe-orbit-controls@1.3.2/dist/aframe-orbit-controls.min.js"></script>
 
   <body>
+    <script>
+      AFRAME.registerComponent('color-change', {
+        init: function() {
+          this.el.addEventListener('click', function() {
+            //set material color to random hex value
+            var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            this.setAttribute('material', {
+              color: randomColor
+            });
+          })
+        }
+      });
 
-    <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable" renderer="colorManagement: true;">
-      </head>
+    </script>
+    </head>
 
-      <body>
-        <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable" renderer="colorManagement: true;">
-          <!-- player -->
-          <a-entity id="cameraRig" position="0 0 0" cursor-teleport="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: #vr-collider; ignoreEntities: .clickable">
-            <a-torus-knot position="0 2 0"></a-torus-knot>
-            <a-entity id="head" position="0 1.52 0" camera look-controls="enabled: false" orbit-controls="target: 0 2 0; minDistance: 2; maxDistance: 180; initialPosition: 0 3 5; rotateSpeed: 0.5"="reverseMouseDrag: true"></a-entity>
-            <a-entity laser-controls="hand: left" raycaster="objects: .clickable; far: 100" line="color: red; opacity: 0.75" blink-controls="
+    <body>
+      <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable" renderer="colorManagement: true;">
+        <!-- player -->
+        <a-entity id="cameraRig" position="0 0 0" cursor-teleport="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: #vr-collider; ignoreEntities: .clickable">
+          <a-entity id="head" position="0 1.52 0" camera look-controls="reverseMouseDrag: true"></a-entity>
+          <a-entity laser-controls="hand: left" raycaster="objects: .clickable; far: 100" line="color: red; opacity: 0.75" blink-controls="
             collisionEntities: #vr-collider;
             cameraRig: #cameraRig;
             teleportOrigin: #head;
             curveShootingSpeed: 6"></a-entity>
-            <a-entity laser-controls="hand: right" raycaster="objects: .clickable" line="color: red; opacity: 0.75" blink-controls="
+          <a-entity laser-controls="hand: right" raycaster="objects: .clickable" line="color: red; opacity: 0.75" blink-controls="
             collisionEntities: #vr-collider;
             cameraRig: #cameraRig;
             teleportOrigin: #head;
             curveShootingSpeed: 6"></a-entity>
-          </a-entity>
-          </a-entity>
-          <a-entity gaussian_splatting="src: /webstuff/splats/train.splat; xrPixelRatio: 0.5; pixelRatio: 0.25;" rotation="4.5 0 -2" position="0 1.5 -2" scale="2 2 2"></a-entity>
-          <!-- scene model -->
-          <a-entity class="collision" gltf-model="#environment"></a-entity>
+        </a-entity>
+        <a-entity gaussian_splatting="src: https://realandreif.github.io/webstuff/splats/train.splat; xrPixelRatio: 0.5; pixelRatio: 0.25;" rotation="4.5 0 -2" position="0 1.5 -2" scale="2 2 2"></a-entity>
+        <!-- scene model -->
+        <a-entity class="collision" gltf-model="#environment"></a-entity>
 
-          <!-- collision for vr teleport controls -->
-          <a-entity id="vr-collider" obj-model="obj: url(models/vr-collider.obj)" visible="false"></a-entity>
-        </a-scene>
-      </body>
+        <!-- collision for vr teleport controls -->
+        <a-entity id="vr-collider" obj-model="obj: url(models/vr-collider.obj)" visible="false"></a-entity>
+      </a-scene>
+    </body>
 
 </html>
